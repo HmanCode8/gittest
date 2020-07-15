@@ -1,12 +1,18 @@
 import React,{Component} from 'react';
 import {BrowserRouter as Router ,Link,Route } from 'react-router-dom'
 import './App.css'
-import imgUrl from './1.jpg'
+
+import {Button,Pagination,DatePicker,Carousel   } from 'antd'
+const { RangePicker } = DatePicker;
+const demoImgArr = ["1" , "2" , "3","4"]
+const ticks = demoImgArr.map(item => require('./'+item + ".jpg"))
+console.log(ticks);
 function Index(){
   return (
     <div  className='content'>
       <h2>首页</h2>
-      <img src={imgUrl} alt='image' title='图片'></img>
+      <Button type="primary">Button</Button>
+      {/* <img src={imgUrl} alt='image' title='图片'></img> */}
     </div>
   )
 }
@@ -14,14 +20,40 @@ function About(){
   return (
     <div className='content'>
       <h2>关于我们</h2>
+      <RangePicker showTime />
+
     </div>
   )
 }
+
+function onChange(a, b, c) {
+  console.log(a, b, c);
+}
+
 function My(props){
   console.log(props);
   return (
     <div  className='content'>
       <h2>个人中心</h2>
+      <div className='banner'>
+      <Carousel afterChange={onChange} autoplay>
+    <div>
+    <img src={ticks[0]} alt='image' title='图片'></img>
+    </div>
+    <div>
+    <img src={ticks[1]} alt='image' title='图片'></img>
+    </div>
+    <div>
+    <img src={ticks[2]} alt='image' title='图片'></img>
+    </div>
+    <div>
+    <img src={ticks[3]} alt='image' title='图片'></img>
+    </div>
+  
+  </Carousel>
+      </div>
+      {/* <Pagination defaultCurrent={10} total={150} /> */}
+
     </div>
   )
 }
